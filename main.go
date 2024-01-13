@@ -26,7 +26,7 @@ var (
 func init() {
 	viper.SetConfigName(".env")
 	viper.SetConfigType("env")
-	viper.AddConfigPath("/Users/flevin58")
+	viper.AddConfigPath("$HOME")
 	viper.AddConfigPath(".")
 	viper.AutomaticEnv()
 	if err := viper.ReadInConfig(); err != nil {
