@@ -9,21 +9,38 @@ import (
 	"strings"
 
 	"github.com/gocolly/colly"
+	"github.com/spf13/viper"
 )
 
 const (
-	url         = "https://www.wordunscrambler.net/word-list/wordle-word-list"
-	mainDomain  = "www.wordunscrambler.net"
-	myUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15"
+	url        = "https://www.wordunscrambler.net/word-list/wordle-word-list"
+	mainDomain = "www.wordunscrambler.net"
 )
 
 var (
-	words strings.Builder
+	words          strings.Builder
+	numWords       int
+	collyUserAgent string
 )
+
+func init() {
+	viper.SetConfigName(".env")
+	viper.SetConfigType("env")
+	viper.AddConfigPath("/Users/flevin58")
+	viper.AddConfigPath(".")
+	viper.AutomaticEnv()
+	if err := viper.ReadInConfig(); err != nil {
+		log.Printf("Warning: couldn't read config file (%s)\n", err)
+		log.Println("Using default UserAgent")
+		return
+	}
+	collyUserAgent = viper.GetString("COLLY_USER_AGENT")
+	log.Printf("Using UserAgent from %s\n", viper.ConfigFileUsed())
+}
 
 func main() {
 	c := colly.NewCollector(
-		colly.UserAgent(myUserAgent),
+		colly.UserAgent(collyUserAgent),
 		colly.AllowedDomains(mainDomain),
 	)
 
@@ -43,6 +60,7 @@ func main() {
 					word := strings.TrimSpace(h.Text)
 					words.WriteString(word)
 					words.WriteByte('\n')
+					numWords++
 				})
 			}
 		})
@@ -54,7 +72,7 @@ func main() {
 		if err != nil {
 			log.Fatalln(err)
 		}
-		fmt.Printf("File '%s' written to disk\n", fname)
+		fmt.Printf("File '%s' written to disk (%d entries)\n", fname, numWords)
 	})
 
 	c.Visit(url)
