@@ -14,9 +14,7 @@ git clone https://github.com/flevin58/wordle-scrape
 cd wordle-scrape
 cargo run
 ```
-
-The wordle repository can be found here: https://github.com/flevin58/wordle
-There is already a words.txt file
+You may copy the file words.txt as needed.
 
 ## Words dictionary
 
