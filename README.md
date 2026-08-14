@@ -20,14 +20,3 @@ There is already a words.txt file
 
 The words were scraped from the following site:
 https://www.wordunscrambler.net/word-list/wordle-word-list
-
-## Project Tree Structure
-
-```
-.
-├── LICENSE
-├── README.md
-├── go.mod
-├── go.sum
-└── main.go
-```
