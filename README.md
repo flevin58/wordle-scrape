@@ -11,7 +11,7 @@ Clone this repo to your computer and run the application:
 
 ```
 git clone https://github.com/flevin58/wordle-scrape
-cd world-scrape
+cd wordle-scrape
 cargo run
 ```
 
