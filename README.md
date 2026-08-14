@@ -7,10 +7,12 @@ It could be useful if you need to generate a file with words other than english.
 ## Installation
 
 No installation is needed, since this program is run only once to generate the words.txt file.
-Download the project files to your computer and within the wordle folder type:
+Clone this repo to your computer and run the application:
 
 ```
-go run main.go
+git clone https://github.com/flevin58/wordle-scrape
+cd world-scrape
+cargo run
 ```
 
 The wordle repository can be found here: https://github.com/flevin58/wordle
