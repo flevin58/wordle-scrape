@@ -1,4 +1,4 @@
-# wordle-scrape
+  # wordle-scrape
 
 This project program creates a words.txt file with a dictionary of 5-letter words compatible with the game of Wordle.
 I used it to copy the generated file into my [wordle game repo](https://github.com/flevin58/wordle)
